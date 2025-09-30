@@ -13,8 +13,9 @@ type Post = {
 
 const COLLECTION = process.env.NEXT_PUBLIC_CMS_COLLECTION || "posts"; // 필요 시 articles 등
 
-export default async function BlogDetail({ params }: { params: { slug: string } }) {
-    const s = params.slug;
+export default async function BlogDetail({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const s = slug;
 
     // 1) slug로 조회
     const bySlug = await fetchBySlug(s);
