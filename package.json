@@ -9,6 +9,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build --turbopack",
+        "export": "next build && next export",
         "start": "next start",
         "lint": "eslint",
         "postbuild": "next-sitemap"
