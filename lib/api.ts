@@ -13,9 +13,11 @@ const BASE = process.env.NEXT_PUBLIC_CMS_URL; // 예: http://localhost:1337
 export async function fetchPublic<T = unknown>(path: string, params: Record<string, unknown> = {}) {
     const url = normalizeUrl(BASE, path);
     if (!url) {
-        throw new Error(
-            "환경변수 NEXT_PUBLIC_CMS_URL 이 비어있습니다. .env.local 에 설정하세요. 예) NEXT_PUBLIC_CMS_URL=http://localhost:1337"
-        );
+        // CMS가 없으면 더미 데이터 반환
+        console.warn("CMS URL이 설정되지 않았습니다. 더미 데이터를 반환합니다.");
+        return {
+            data: []
+        } as T;
     }
 
     try {
@@ -27,13 +29,10 @@ export async function fetchPublic<T = unknown>(path: string, params: Record<stri
         });
         return res.data;
     } catch (err) {
-        const e = err as AxiosError<unknown>;
-        const status = e.response?.status;
-        const detail = typeof e.response?.data === "string" ? e.response?.data : JSON.stringify(e.response?.data);
-        throw new Error(
-            `fetchPublic 실패: GET ${url} → ${status ?? "NO_STATUS"}\n` +
-            (detail ? `응답: ${detail}\n` : "") +
-            (e.message ? `메시지: ${e.message}` : "")
-        );
+        console.warn("CMS API 호출 실패:", err);
+        // 오류가 발생해도 더미 데이터 반환
+        return {
+            data: []
+        } as T;
     }
 }
