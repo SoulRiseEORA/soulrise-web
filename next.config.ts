@@ -1,9 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  env: {
-    PORT: process.env.PORT || '3000',
-  },
+  // 기본 설정만 사용
 };
 
 export default nextConfig;
