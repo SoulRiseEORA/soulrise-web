@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "소울라이즈 AI 솔루션 출시",
+    "slug": "soulrise-ai-solution-launch",
+    "excerpt": "감정을 이해하는 혁신적인 AI 기술로 새로운 차원의 고객 경험을 제공합니다.",
+    "content": "<p>소울라이즈는 고객의 감정을 정확히 이해하고 반응하는 AI 솔루션을 제공합니다.</p><p>이 기술은 고객 만족도를 크게 향상시키고, 비즈니스 성과를 개선합니다.</p>",
+    "publishedAt": "2025-10-01T10:00:00.000Z",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "AI 기반 감정 분석 기술",
+    "slug": "ai-emotion-analysis-technology",
+    "excerpt": "최첨단 AI 기술을 활용한 감정 분석 솔루션의 핵심 기능을 소개합니다.",
+    "content": "<p>우리의 AI는 음성, 텍스트, 표정을 종합적으로 분석하여 고객의 진짜 감정을 파악합니다.</p><p>이를 통해 더 정확한 서비스 제공이 가능합니다.</p>",
+    "publishedAt": "2025-09-30T15:30:00.000Z",
+    "featured": false
+  },
+  {
+    "id": 3,
+    "title": "고객 만족도 향상 사례",
+    "slug": "customer-satisfaction-case-study",
+    "excerpt": "소울라이즈 AI 솔루션을 도입한 기업들의 성공 사례를 공유합니다.",
+    "content": "<p>A사는 소울라이즈 AI를 도입한 후 고객 만족도가 40% 향상되었습니다.</p><p>B사는 고객 응답 시간을 50% 단축시켜 운영 효율성을 크게 개선했습니다.</p>",
+    "publishedAt": "2025-09-29T09:15:00.000Z",
+    "featured": false
+  }
+]

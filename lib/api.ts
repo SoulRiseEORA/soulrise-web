@@ -8,31 +8,26 @@ function normalizeUrl(base?: string, path: string = "") {
     return `${b}${p}`;
 }
 
-const BASE = process.env.NEXT_PUBLIC_CMS_URL; // 예: http://localhost:1337
+const BASE = process.env.NEXT_PUBLIC_CMS_URL || ''; // 로컬 API 사용
 
 export async function fetchPublic<T = unknown>(path: string, params: Record<string, unknown> = {}) {
-    const url = normalizeUrl(BASE, path);
+    // 로컬 API 사용 (자체 Next.js API 라우트)
+    const baseUrl = BASE || (typeof window !== 'undefined' ? window.location.origin : '');
+    const url = normalizeUrl(baseUrl, path);
+    
     if (!url) {
-        // CMS가 없으면 더미 데이터 반환
-        console.warn("CMS URL이 설정되지 않았습니다. 더미 데이터를 반환합니다.");
-        return {
-            data: []
-        } as T;
+        console.warn("API URL을 생성할 수 없습니다.");
+        return { data: [] } as T;
     }
 
     try {
         const res = await axios.get<T>(url, {
             params,
             timeout: 10000,
-            // 필요한 경우 인증/헤더 추가
-            // headers: { Authorization: `Bearer ${process.env.NEXT_PUBLIC_CMS_TOKEN}` }
         });
         return res.data;
     } catch (err) {
-        console.warn("CMS API 호출 실패:", err);
-        // 오류가 발생해도 더미 데이터 반환
-        return {
-            data: []
-        } as T;
+        console.warn("API 호출 실패:", err);
+        return { data: [] } as T;
     }
 }
